@@ -42,3 +42,4 @@ class RegisterController extends Controller
             ], Response::HTTP_CREATED);
     }
 }
+// TAMBAHKAN Accept application/json
