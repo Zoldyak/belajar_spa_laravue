@@ -1,12 +1,12 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
-import auth from "../app/auth/router"
+import auth from "../modul/auth/router"
 
-const daftar_router_modul  =[...auth];
+const routes   =[...auth];
 
 Vue.use(VueRouter);
 const router = new VueRouter({
     mode:"history",
-    daftar_router_modul
+    routes  
 })
 export default router
