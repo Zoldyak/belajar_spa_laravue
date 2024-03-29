@@ -66,9 +66,10 @@
     </head>
     <body>
         <div id="app">
-            <example-component>
+            
+            <app>
 
-            </example-component>
+            </app>
         </div>
         {{-- <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
