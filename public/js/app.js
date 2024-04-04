@@ -1978,7 +1978,8 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     return {
       name: null,
       email: null,
-      password: null
+      password: null,
+      errors: []
     };
   },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
@@ -1990,9 +1991,10 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           name: this.name,
           email: this.email,
           password: this.password
-        }
+        },
+        context: this
       });
-      console.log(this.name);
+      // console.log(this.name)
     }
   })
 });
@@ -2214,6 +2216,9 @@ var render = function render() {
       expression: "name"
     }],
     staticClass: "form-control",
+    "class": {
+      "is-invalid": _vm.errors.name
+    },
     attrs: {
       id: "name",
       type: "text",
@@ -2230,12 +2235,12 @@ var render = function render() {
         _vm.name = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("span", {
+  }), _vm._v(" "), _vm.errors.name ? _c("span", {
     staticClass: "invalid-feedback",
     attrs: {
       role: "alert"
     }
-  })])]), _vm._v(" "), _c("div", {
+  }, [_c("strong", [_vm._v(_vm._s(_vm.errors.name[0]))])]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
     staticClass: "col-md-4 col-form-label text-md-right",
@@ -2252,6 +2257,9 @@ var render = function render() {
       expression: "email"
     }],
     staticClass: "form-control",
+    "class": {
+      "is-invalid": _vm.errors.email
+    },
     attrs: {
       id: "email",
       type: "text",
@@ -2267,12 +2275,12 @@ var render = function render() {
         _vm.email = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("span", {
+  }), _vm._v(" "), _vm.errors.email ? _c("span", {
     staticClass: "invalid-feedback",
     attrs: {
       role: "alert"
     }
-  })])]), _vm._v(" "), _c("div", {
+  }, [_c("strong", [_vm._v(_vm._s(_vm.errors.email[0]))])]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
     staticClass: "col-md-4 col-form-label text-md-right",
@@ -2289,6 +2297,9 @@ var render = function render() {
       expression: "password"
     }],
     staticClass: "form-control",
+    "class": {
+      "is-invalid": _vm.errors.password
+    },
     attrs: {
       id: "password",
       type: "password",
@@ -2304,12 +2315,12 @@ var render = function render() {
         _vm.password = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("span", {
+  }), _vm._v(" "), _vm.errors.password ? _c("span", {
     staticClass: "invalid-feedback",
     attrs: {
       role: "alert"
     }
-  })])]), _vm._v(" "), _vm._m(0)])])])])])]);
+  }, [_c("strong", [_vm._v(_vm._s(_vm.errors.password[0]))])]) : _vm._e()])]), _vm._v(" "), _vm._m(0)])])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -54662,11 +54673,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var register = function register(_ref, _ref2) {
   var dispatch = _ref.dispatch;
-  var payload = _ref2.payload;
+  var payload = _ref2.payload,
+    context = _ref2.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/auth/register", payload).then(function (result) {
     console.log(result.data);
   })["catch"](function (err) {
-    console.log(err.response.data.errors);
+    context.errors = err.response.data.errors;
   });
 };
 

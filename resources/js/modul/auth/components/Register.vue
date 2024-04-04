@@ -19,20 +19,18 @@
                                         id="name"
                                         type="text"
                                         class="form-control"
-                                        
+                                        :class="{ 'is-invalid': errors.name }"
                                         name="name"
                                         autocomplete="name"
                                         autofocus
                                         v-model="name"
                                     />
 
-                                    <span
-                                        class="invalid-feedback"
-                                        role="alert"
-                                       
-                                    >
-                                       
+                                    <span class="invalid-feedback" role="alert" v-if="errors.name">
+                                        <strong>{{ errors.name[0] }}</strong>
                                     </span>
+                                       
+                                   
                                 </div>
                             </div>
 
@@ -48,18 +46,16 @@
                                         id="email"
                                         type="text"
                                         class="form-control"
-                                       
+                                        :class="{ 'is-invalid': errors.email }"
                                         name="email"
                                         autocomplete="email"
                                         v-model="email"
                                     />
-                                    <span
-                                        class="invalid-feedback"
-                                        role="alert"
-                                       
-                                    >
-                                        
+                                    <span class="invalid-feedback" role="alert" v-if="errors.email">
+                                        <strong>{{ errors.email[0] }}</strong>
                                     </span>
+                                        
+                                   
                                 </div>
                             </div>
 
@@ -75,19 +71,17 @@
                                         id="password"
                                         type="password"
                                         class="form-control"
-                                        
+                                        :class="{ 'is-invalid': errors.password }"
                                         name="password"
                                         autocomplete="new-password"
                                         v-model="password"
                                     />
 
-                                    <span
-                                        class="invalid-feedback"
-                                        role="alert"
-                                       
-                                    >
-                                        
+                                    <span class="invalid-feedback" role="alert" v-if="errors.password">
+                                        <strong>{{ errors.password[0] }}</strong>
                                     </span>
+                                        
+                                   
                                 </div>
                             </div>
 
@@ -115,7 +109,8 @@ import { mapActions } from "vuex";
             return {
                 name:null,
                 email:null,
-                password:null
+                password:null,
+                errors:[]
             }
         },
         methods:{
@@ -128,9 +123,10 @@ import { mapActions } from "vuex";
                         name:this.name,
                         email:this.email,
                         password:this.password
-                    }
+                    },
+                    context:this
                 })
-                console.log(this.name)
+                // console.log(this.name)
             }
         }
     };
