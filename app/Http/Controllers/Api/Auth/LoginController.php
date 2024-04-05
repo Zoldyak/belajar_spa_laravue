@@ -18,6 +18,10 @@ class LoginController extends Controller
         if (! Auth::attempt($user)) {
             return response()->json([
                 'message' => 'Authentication is invalid.',
+                'errors'=>[
+                    'root'=> 'Gagal Login'
+                ]
+                
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         
