@@ -86,10 +86,11 @@ export default {
             errors:[]
         }
     },
-    ...mapActions({
+   
+    methods: {
+      ...mapActions({
         login:"auth/login"
     }),
-    methods: {
         submit() {
             this.login({
                 payload: {
