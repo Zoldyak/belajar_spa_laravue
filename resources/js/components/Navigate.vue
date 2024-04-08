@@ -52,8 +52,8 @@
                                 aria-haspopup="true"
                                 aria-expanded="false"
                             >
-                            Firman
-                                <!-- {{ user.data.name }} -->
+                            <!-- Firman -->
+                                {{ user.data.name }}
                                 <span class="caret"></span>
                             </a>
 
